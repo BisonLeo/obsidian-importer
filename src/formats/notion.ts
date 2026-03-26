@@ -114,7 +114,8 @@ export class NotionImporter extends FormatImporter {
 
 					ctx.status(`Importing note ${fileInfo.title}`);
 
-					const markdownBody = await readToMarkdown(info, file);
+					const noteDir = `${targetFolderPath}${info.getPathForFile(fileInfo)}`;
+					const markdownBody = await readToMarkdown(info, file, noteDir);
 					let writeOptions: DataWriteOptions = {};
 
 					if (fileInfo.ctime) {

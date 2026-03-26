@@ -115,7 +115,10 @@ function cleanDuplicateAttachments({
 			);
 		}
 		else {
-			parentFolderPath = normalizePath(attachmentFolderPath + '/');
+			const basePath = attachmentFolderPath && attachmentFolderPath !== '/'
+				? attachmentFolderPath + '/'
+				: targetFolderPath;
+			parentFolderPath = normalizePath(basePath + info.getPathForFile(attachmentInfo));
 		}
 		if (!parentFolderPath.endsWith('/')) parentFolderPath += '/';
 
